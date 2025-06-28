@@ -43,8 +43,7 @@ namespace RemoteControl {
     /**
      * כאשר נלחץ כפתור
      */
-    //% block="כאשר נלחץ כפתור %btn=RemoteButton.A"
-    //% enumName="RemoteButton"
+    //% block="כאשר נלחץ כפתור %btn=0"
     export function onButtonPressed(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
             while (true) {
@@ -63,8 +62,7 @@ namespace RemoteControl {
     /**
      * כאשר משוחרר כפתור
      */
-    //% block="כאשר משוחרר כפתור %btn=RemoteButton.A"
-    //% enumName="RemoteButton"
+    //% block="כאשר משוחרר כפתור %btn=0"
     export function onButtonReleased(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
             while (true) {
