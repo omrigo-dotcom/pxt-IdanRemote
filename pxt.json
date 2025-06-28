@@ -1,7 +1,7 @@
 {
   "name": "remote-control",
   "version": "0.0.4",
-  "description": "Extension לקריאת שלט ופינים דיגיטליים",
+  "description": "Idan Remote",
   "dependencies": {},
   "files": [
     "main.ts"
