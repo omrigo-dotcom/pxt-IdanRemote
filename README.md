@@ -1,1 +1,1 @@
-# Idan Remote Control
+# שלט רחוק עידן טכנולוגי
