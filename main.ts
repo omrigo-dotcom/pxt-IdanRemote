@@ -1,50 +1,32 @@
-//% color=#007ACC icon="\u1F3AE" block="שלט"
+//% color=#007ACC icon="\uf11b" block="שלט"
 namespace RemoteControl {
-    // מיפוי כפתורים לפינים
     let pinsMap = [
         DigitalPin.P0, DigitalPin.P1, DigitalPin.P2,
         DigitalPin.P3, DigitalPin.P4, DigitalPin.P10
     ]
     let wasPressed = [0, 0, 0, 0, 0, 0]
 
-    /**
-     * כפתורים A–F
-     */
-    //% block="כפתור שלט"
-    export enum RemoteButton {
-        //% block="A"
+    enum RemoteButton {
         A = 0,
-        //% block="B"
         B = 1,
-        //% block="C"
         C = 2,
-        //% block="D"
         D = 3,
-        //% block="E"
         E = 4,
-        //% block="F"
         F = 5
     }
 
-    /**
-     * כיוון הג'ויסטיק
-     */
-    //% block="כיוון ג'ויסטיק"
-    export enum JoystickDirection {
-        //% block="למעלה"
+    enum JoystickDirection {
         Up,
-        //% block="למטה"
         Down,
-        //% block="ימינה"
         Right,
-        //% block="שמאלה"
         Left
     }
 
     /**
      * כאשר נלחץ כפתור
      */
-    //% block="כאשר נלחץ כפתור %btn"
+    //% block="כאשר נלחץ כפתור %btn=A"
+    //% btn.shadow="remoteButtonPicker"
     export function onButtonPressed(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
             while (true) {
@@ -63,7 +45,8 @@ namespace RemoteControl {
     /**
      * כאשר משוחרר כפתור
      */
-    //% block="כאשר משוחרר כפתור %btn"
+    //% block="כאשר משוחרר כפתור %btn=A"
+    //% btn.shadow="remoteButtonPicker"
     export function onButtonReleased(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
             while (true) {
@@ -80,31 +63,10 @@ namespace RemoteControl {
     }
 
     /**
-     * כאשר אף כפתור אינו לחוץ
-     */
-    //% block="כאשר אף כפתור אינו לחוץ"
-    export function onNoButtonPressed(handler: () => void) {
-        control.inBackground(() => {
-            while (true) {
-                let anyPressed = false
-                for (let i = 0; i < pinsMap.length; i++) {
-                    if (pins.digitalReadPin(pinsMap[i]) == 0) {
-                        anyPressed = true
-                    }
-                }
-                if (!anyPressed) {
-                    handler()
-                    basic.pause(500)
-                }
-                basic.pause(20)
-            }
-        })
-    }
-
-    /**
      * כאשר הג'ויסטיק פונה לכיוון
      */
-    //% block="כאשר ג'ויסטיק פונה %dir"
+    //% block="כאשר ג'ויסטיק פונה %dir=JoystickDirection.Up"
+    //% dir.shadow="joystickDirectionPicker"
     export function onJoystickDirection(dir: JoystickDirection, handler: () => void) {
         control.inBackground(() => {
             while (true) {
@@ -136,5 +98,18 @@ namespace RemoteControl {
                 basic.pause(50)
             }
         })
+    }
+
+    // רשימות עזר לבלוקים
+    //% shim=TD_ID
+    //% blockId=remoteButtonPicker block="%name"
+    export function remoteButtonPicker(name: RemoteButton): RemoteButton {
+        return name
+    }
+
+    //% shim=TD_ID
+    //% blockId=joystickDirectionPicker block="%name"
+    export function joystickDirectionPicker(name: JoystickDirection): JoystickDirection {
+        return name
     }
 }
