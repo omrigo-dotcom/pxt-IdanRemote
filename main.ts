@@ -43,7 +43,7 @@ namespace RemoteControl {
     /**
      * כאשר נלחץ כפתור
      */
-    //% block="כאשר נלחץ כפתור %btn"
+    //% block="כאשר נלחץ כפתור %btn=A"
     //% btn.shadow="dropdown"
     //% btn.fieldEditor="enum"
     //% btn.fieldEditorOptions="enumName:RemoteButton"
@@ -65,7 +65,7 @@ namespace RemoteControl {
     /**
      * כאשר משוחרר כפתור
      */
-    //% block="כאשר משוחרר כפתור %btn"
+    //% block="כאשר משוחרר כפתור %btn=A"
     //% btn.shadow="dropdown"
     //% btn.fieldEditor="enum"
     //% btn.fieldEditorOptions="enumName:RemoteButton"
@@ -87,7 +87,7 @@ namespace RemoteControl {
     /**
      * כאשר הג'ויסטיק בכיוון מסוים
      */
-    //% block="כאשר הג'ויסטיק"
+    //% block="כאשר הג'ויסטיק %dir=JoystickDirection.Center"
     //% dir.shadow="dropdown"
     //% dir.fieldEditor="enum"
     //% dir.fieldEditorOptions="enumName:JoystickDirection"
