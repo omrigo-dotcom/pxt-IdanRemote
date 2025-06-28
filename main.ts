@@ -44,6 +44,9 @@ namespace RemoteControl {
      * כאשר נלחץ כפתור
      */
     //% block="כאשר נלחץ כפתור %btn"
+    //% btn.shadow="dropdown"
+    //% btn.fieldEditor="enum"
+    //% btn.fieldEditorOptions="enumName:RemoteButton"
     export function onButtonPressed(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
             while (true) {
@@ -63,6 +66,9 @@ namespace RemoteControl {
      * כאשר משוחרר כפתור
      */
     //% block="כאשר משוחרר כפתור %btn"
+    //% btn.shadow="dropdown"
+    //% btn.fieldEditor="enum"
+    //% btn.fieldEditorOptions="enumName:RemoteButton"
     export function onButtonReleased(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
             while (true) {
@@ -79,9 +85,12 @@ namespace RemoteControl {
     }
 
     /**
-     * כאשר הג'ויסטיק הוא בכיוון מסוים
+     * כאשר הג'ויסטיק בכיוון מסוים
      */
-    //% block="כאשר הג'ויסטיק הוא %dir"
+    //% block="כאשר הג'ויסטיק"
+    //% dir.shadow="dropdown"
+    //% dir.fieldEditor="enum"
+    //% dir.fieldEditorOptions="enumName:JoystickDirection"
     export function onJoystickDirection(dir: JoystickDirection, handler: () => void) {
         control.inBackground(() => {
             while (true) {
