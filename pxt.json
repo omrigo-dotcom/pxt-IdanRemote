@@ -1,7 +1,7 @@
 {
-  "name": "remote-control",
+  "name": "שלט רחוק עידן טכנולוגי",
   "version": "0.0.7",
-  "description": "Idan Remote",
+  "description": "",
   "dependencies": {},
   "files": [
     "main.ts"
