@@ -6,19 +6,9 @@ namespace RemoteControl {
     ]
     let wasPressed = [0, 0, 0, 0, 0, 0]
 
-    export enum JoystickDirection {
-        //% block="למעלה"
-        Up,
-        //% block="למטה"
-        Down,
-        //% block="ימינה"
-        Right,
-        //% block="שמאלה"
-        Left,
-        //% block="באמצע"
-        Center
-    }
-
+    /**
+     * כפתורים A–F
+     */
     export enum RemoteButton {
         //% block="A"
         A = 0,
@@ -34,6 +24,9 @@ namespace RemoteControl {
         F = 5
     }
 
+    /**
+     * כאשר נלחץ כפתור
+     */
     //% block="כאשר נלחץ כפתור %btn"
     export function onButtonPressed(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
@@ -50,6 +43,9 @@ namespace RemoteControl {
         })
     }
 
+    /**
+     * כאשר משוחרר כפתור
+     */
     //% block="כאשר משוחרר כפתור %btn"
     export function onButtonReleased(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
@@ -66,6 +62,25 @@ namespace RemoteControl {
         })
     }
 
+    /**
+     * כיווני ג'ויסטיק
+     */
+    export enum JoystickDirection {
+        //% block="למעלה"
+        Up,
+        //% block="למטה"
+        Down,
+        //% block="ימינה"
+        Right,
+        //% block="שמאלה"
+        Left,
+        //% block="באמצע"
+        Center
+    }
+
+    /**
+     * כאשר הג'ויסטיק בכיוון מסוים
+     */
     //% block="כאשר הג'ויסטיק %dir"
     export function onJoystickDirection(dir: JoystickDirection, handler: () => void) {
         control.inBackground(() => {
