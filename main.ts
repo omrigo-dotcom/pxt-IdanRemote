@@ -19,7 +19,8 @@ namespace RemoteControl {
         Up,
         Down,
         Right,
-        Left
+        Left,
+        Center
     }
 
     /**
@@ -63,9 +64,9 @@ namespace RemoteControl {
     }
 
     /**
-     * כאשר הג'ויסטיק פונה לכיוון
+     * כאשר הג'ויסטיק נמצא בכיוון מסוים
      */
-    //% block="כאשר ג'ויסטיק פונה %dir=JoystickDirection.Up"
+    //% block="כאשר ג'ויסטיק %dir"
     //% dir.shadow="joystickDirectionPicker"
     export function onJoystickDirection(dir: JoystickDirection, handler: () => void) {
         control.inBackground(() => {
@@ -88,6 +89,9 @@ namespace RemoteControl {
                     case JoystickDirection.Right:
                         active = x > 700
                         break
+                    case JoystickDirection.Center:
+                        active = x >= 400 && x <= 600 && y >= 400 && y <= 600
+                        break
                 }
 
                 if (active) {
@@ -100,15 +104,15 @@ namespace RemoteControl {
         })
     }
 
-    // רשימות עזר לבלוקים
+    // רשימות לבחירה בלבד (כדי לא להציג בלוקים עגולים)
     //% shim=TD_ID
-    //% blockId=remoteButtonPicker block="%name"
+    //% blockHidden=true
     export function remoteButtonPicker(name: RemoteButton): RemoteButton {
         return name
     }
 
     //% shim=TD_ID
-    //% blockId=joystickDirectionPicker block="%name"
+    //% blockHidden=true
     export function joystickDirectionPicker(name: JoystickDirection): JoystickDirection {
         return name
     }
