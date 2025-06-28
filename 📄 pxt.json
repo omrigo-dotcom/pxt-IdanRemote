@@ -1,0 +1,10 @@
+{
+  "name": "remote-control",
+  "version": "0.0.1",
+  "description": "Extension לקריאת שלט ופינים דיגיטליים",
+  "dependencies": {},
+  "files": [
+    "main.ts"
+  ],
+  "testFiles": []
+}
