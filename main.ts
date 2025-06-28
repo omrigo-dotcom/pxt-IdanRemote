@@ -7,6 +7,22 @@ namespace RemoteControl {
     let wasPressed = [0, 0, 0, 0, 0, 0]
 
     /**
+     * כיווני ג'ויסטיק
+     */
+    export enum JoystickDirection {
+        //% block="למעלה"
+        Up,
+        //% block="למטה"
+        Down,
+        //% block="ימינה"
+        Right,
+        //% block="שמאלה"
+        Left,
+        //% block="באמצע"
+        Center
+    }
+
+    /**
      * כפתורים A–F
      */
     export enum RemoteButton {
@@ -22,22 +38,6 @@ namespace RemoteControl {
         E = 4,
         //% block="F"
         F = 5
-    }
-
-    /**
-     * כיווני ג'ויסטיק
-     */
-    export enum JoystickDirection {
-        //% block="למעלה"
-        Up,
-        //% block="למטה"
-        Down,
-        //% block="ימינה"
-        Right,
-        //% block="שמאלה"
-        Left,
-        //% block="באמצע"
-        Center
     }
 
     /**
