@@ -6,28 +6,44 @@ namespace RemoteControl {
     ]
     let wasPressed = [0, 0, 0, 0, 0, 0]
 
-    enum RemoteButton {
+    /**
+     * כפתורים A–F
+     */
+    export enum RemoteButton {
+        //% block="A"
         A = 0,
+        //% block="B"
         B = 1,
+        //% block="C"
         C = 2,
+        //% block="D"
         D = 3,
+        //% block="E"
         E = 4,
+        //% block="F"
         F = 5
     }
 
-    enum JoystickDirection {
+    /**
+     * כיווני ג'ויסטיק
+     */
+    export enum JoystickDirection {
+        //% block="למעלה"
         Up,
+        //% block="למטה"
         Down,
+        //% block="ימינה"
         Right,
+        //% block="שמאלה"
         Left,
+        //% block="באמצע"
         Center
     }
 
     /**
      * כאשר נלחץ כפתור
      */
-    //% block="כאשר נלחץ כפתור %btn=A"
-    //% btn.shadow="remoteButtonPicker"
+    //% block="כאשר נלחץ כפתור %btn"
     export function onButtonPressed(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
             while (true) {
@@ -46,8 +62,7 @@ namespace RemoteControl {
     /**
      * כאשר משוחרר כפתור
      */
-    //% block="כאשר משוחרר כפתור %btn=A"
-    //% btn.shadow="remoteButtonPicker"
+    //% block="כאשר משוחרר כפתור %btn"
     export function onButtonReleased(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
             while (true) {
@@ -64,10 +79,9 @@ namespace RemoteControl {
     }
 
     /**
-     * כאשר הג'ויסטיק נמצא בכיוון מסוים
+     * כאשר הג'ויסטיק הוא בכיוון מסוים
      */
-    //% block="כאשר ג'ויסטיק %dir"
-    //% dir.shadow="joystickDirectionPicker"
+    //% block="כאשר הג'ויסטיק הוא %dir"
     export function onJoystickDirection(dir: JoystickDirection, handler: () => void) {
         control.inBackground(() => {
             while (true) {
@@ -102,18 +116,5 @@ namespace RemoteControl {
                 basic.pause(50)
             }
         })
-    }
-
-    // רשימות לבחירה בלבד (כדי לא להציג בלוקים עגולים)
-    //% shim=TD_ID
-    //% blockHidden=true
-    export function remoteButtonPicker(name: RemoteButton): RemoteButton {
-        return name
-    }
-
-    //% shim=TD_ID
-    //% blockHidden=true
-    export function joystickDirectionPicker(name: JoystickDirection): JoystickDirection {
-        return name
     }
 }
