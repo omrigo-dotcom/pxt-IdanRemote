@@ -6,9 +6,7 @@ namespace RemoteControl {
     ]
     let wasPressed = [0, 0, 0, 0, 0, 0]
 
-    /**
-     * כפתורים A–F
-     */
+    // ✨ קודם כל הכפתורים
     export enum RemoteButton {
         //% block="A"
         A = 0,
@@ -24,47 +22,39 @@ namespace RemoteControl {
         F = 5
     }
 
-    /**
-     * כאשר נלחץ כפתור
-     */
     //% block="כאשר נלחץ כפתור %btn"
     export function onButtonPressed(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
             while (true) {
-                const pin = pinsMap[btn]
+                const pin = pinsMap[btn];
                 if (pins.digitalReadPin(pin) == 0 && wasPressed[btn] == 0) {
-                    wasPressed[btn] = 1
-                    handler()
+                    wasPressed[btn] = 1;
+                    handler();
                 } else if (pins.digitalReadPin(pin) == 1) {
-                    wasPressed[btn] = 0
+                    wasPressed[btn] = 0;
                 }
-                basic.pause(20)
+                basic.pause(20);
             }
-        })
+        });
     }
 
-    /**
-     * כאשר משוחרר כפתור
-     */
     //% block="כאשר משוחרר כפתור %btn"
     export function onButtonReleased(btn: RemoteButton, handler: () => void) {
         control.inBackground(() => {
             while (true) {
-                const pin = pinsMap[btn]
+                const pin = pinsMap[btn];
                 if (pins.digitalReadPin(pin) == 1 && wasPressed[btn] == 1) {
-                    wasPressed[btn] = 0
-                    handler()
+                    wasPressed[btn] = 0;
+                    handler();
                 } else if (pins.digitalReadPin(pin) == 0) {
-                    wasPressed[btn] = 1
+                    wasPressed[btn] = 1;
                 }
-                basic.pause(20)
+                basic.pause(20);
             }
-        })
+        });
     }
 
-    /**
-     * כיווני ג'ויסטיק
-     */
+    // ✨ רק אחר כך – הג'ויסטיק
     export enum JoystickDirection {
         //% block="למעלה"
         Up,
@@ -78,43 +68,40 @@ namespace RemoteControl {
         Center
     }
 
-    /**
-     * כאשר הג'ויסטיק בכיוון מסוים
-     */
     //% block="כאשר הג'ויסטיק %dir"
     export function onJoystickDirection(dir: JoystickDirection, handler: () => void) {
         control.inBackground(() => {
             while (true) {
-                let x = pins.analogReadPin(AnalogPin.P1)
-                let y = pins.analogReadPin(AnalogPin.P2)
+                const x = pins.analogReadPin(AnalogPin.P1);
+                const y = pins.analogReadPin(AnalogPin.P2);
 
-                let active = false
+                let active = false;
 
                 switch (dir) {
                     case JoystickDirection.Up:
-                        active = y < 300
-                        break
+                        active = y < 300;
+                        break;
                     case JoystickDirection.Down:
-                        active = y > 700
-                        break
+                        active = y > 700;
+                        break;
                     case JoystickDirection.Left:
-                        active = x < 300
-                        break
+                        active = x < 300;
+                        break;
                     case JoystickDirection.Right:
-                        active = x > 700
-                        break
+                        active = x > 700;
+                        break;
                     case JoystickDirection.Center:
-                        active = x >= 400 && x <= 600 && y >= 400 && y <= 600
-                        break
+                        active = x >= 400 && x <= 600 && y >= 400 && y <= 600;
+                        break;
                 }
 
                 if (active) {
-                    handler()
-                    basic.pause(300)
+                    handler();
+                    basic.pause(300);
                 }
 
-                basic.pause(50)
+                basic.pause(50);
             }
-        })
+        });
     }
 }
