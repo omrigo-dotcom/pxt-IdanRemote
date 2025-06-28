@@ -1,26 +1,48 @@
-//% color=#007ACC icon="\u21BA" block="שלט"
+//% color=#007ACC icon="\u1F3AE" block="שלט"
 namespace RemoteControl {
-    // מיפוי שמות כפתורים לפינים
-    let pinsMap = [DigitalPin.P0, DigitalPin.P1, DigitalPin.P2, DigitalPin.P3]
-    let wasPressed = [0, 0, 0, 0]
+    // מיפוי כפתורים לפינים
+    let pinsMap = [
+        DigitalPin.P0, DigitalPin.P1, DigitalPin.P2,
+        DigitalPin.P3, DigitalPin.P4, DigitalPin.P10
+    ]
+    let wasPressed = [0, 0, 0, 0, 0, 0]
 
     /**
-     * כפתורי שלט (ממופים לפינים)
+     * כפתורים A–F
      */
     //% block="כפתור שלט"
     export enum RemoteButton {
-        //% block="קדימה"
-        Up = 0,
-        //% block="אחורה"
-        Down = 1,
-        //% block="שמאלה"
-        Left = 2,
-        //% block="ימינה"
-        Right = 3
+        //% block="A"
+        A = 0,
+        //% block="B"
+        B = 1,
+        //% block="C"
+        C = 2,
+        //% block="D"
+        D = 3,
+        //% block="E"
+        E = 4,
+        //% block="F"
+        F = 5
     }
 
     /**
-     * כאשר נלחץ כפתור מסוים
+     * כיוון הג'ויסטיק
+     */
+    //% block="כיוון ג'ויסטיק"
+    export enum JoystickDirection {
+        //% block="למעלה"
+        Up,
+        //% block="למטה"
+        Down,
+        //% block="ימינה"
+        Right,
+        //% block="שמאלה"
+        Left
+    }
+
+    /**
+     * כאשר נלחץ כפתור
      */
     //% block="כאשר נלחץ כפתור %btn"
     export function onButtonPressed(btn: RemoteButton, handler: () => void) {
@@ -39,7 +61,7 @@ namespace RemoteControl {
     }
 
     /**
-     * כאשר משוחרר כפתור מסוים
+     * כאשר משוחרר כפתור
      */
     //% block="כאשר משוחרר כפתור %btn"
     export function onButtonReleased(btn: RemoteButton, handler: () => void) {
@@ -72,9 +94,46 @@ namespace RemoteControl {
                 }
                 if (!anyPressed) {
                     handler()
-                    basic.pause(500) // למניעת קריאות מרובות
+                    basic.pause(500)
                 }
                 basic.pause(20)
+            }
+        })
+    }
+
+    /**
+     * כאשר הג'ויסטיק פונה לכיוון
+     */
+    //% block="כאשר ג'ויסטיק פונה %dir"
+    export function onJoystickDirection(dir: JoystickDirection, handler: () => void) {
+        control.inBackground(() => {
+            while (true) {
+                let x = pins.analogReadPin(AnalogPin.P1)
+                let y = pins.analogReadPin(AnalogPin.P2)
+
+                let active = false
+
+                switch (dir) {
+                    case JoystickDirection.Up:
+                        active = y < 300
+                        break
+                    case JoystickDirection.Down:
+                        active = y > 700
+                        break
+                    case JoystickDirection.Left:
+                        active = x < 300
+                        break
+                    case JoystickDirection.Right:
+                        active = x > 700
+                        break
+                }
+
+                if (active) {
+                    handler()
+                    basic.pause(300)
+                }
+
+                basic.pause(50)
             }
         })
     }
