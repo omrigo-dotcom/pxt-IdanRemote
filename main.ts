@@ -1,8 +1,8 @@
 //% color=#007ACC icon="\uf11b" block="שלט"
 namespace RemoteControl {
     let pinsMap = [
-        DigitalPin.P0, DigitalPin.P1, DigitalPin.P2,
-        DigitalPin.P3, DigitalPin.P4, DigitalPin.P10
+        DigitalPin.P5, DigitalPin.P11, DigitalPin.P12,
+        DigitalPin.P14, DigitalPin.P13, DigitalPin.P14
     ]
     let wasPressed = [0, 0, 0, 0, 0, 0]
 
@@ -72,8 +72,8 @@ namespace RemoteControl {
     export function onJoystickDirection(dir: JoystickDirection, handler: () => void) {
         control.inBackground(() => {
             while (true) {
-                const x = pins.analogReadPin(AnalogPin.P1);
-                const y = pins.analogReadPin(AnalogPin.P2);
+                const x = pins.analogReadPin(AnalogPin.P0);
+                const y = pins.analogReadPin(AnalogPin.P1);
 
                 let active = false;
 
@@ -91,7 +91,7 @@ namespace RemoteControl {
                         active = x > 700;
                         break;
                     case JoystickDirection.Center:
-                        active = x >= 400 && x <= 600 && y >= 400 && y <= 600;
+                        active = x >= 300 && x <= 700 && y >= 300 && y <= 700;
                         break;
                 }
 
