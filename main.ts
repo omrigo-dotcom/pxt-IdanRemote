@@ -72,7 +72,7 @@ namespace RemoteControl {
     export function onJoystickDirection(dir: JoystickDirection, handler: () => void) {
         control.inBackground(() => {
             while (true) {
-                const x = pins.analogReadPin(AnalogPin.P0);
+                const x = pins.analogReadPin(AnalogPin.P3);
                 const y = pins.analogReadPin(AnalogPin.P1);
 
                 let active = false;
@@ -97,7 +97,7 @@ namespace RemoteControl {
 
                 if (active) {
                     handler();
-                    basic.pause(300);
+                    basic.pause(100);
                 }
 
                 basic.pause(50);
