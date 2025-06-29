@@ -85,10 +85,10 @@ namespace RemoteControl {
                         active = y > 800;
                         break;
                     case JoystickDirection.Left:
-                        active = x < 500;
+                        active = x > 800;
                         break;
                     case JoystickDirection.Right:
-                        active = x > 800;
+                        active = x < 500;
                         break;
                     case JoystickDirection.Center:
                         active = x >= 500 && x <= 800 && y >= 200 && y <= 800;
