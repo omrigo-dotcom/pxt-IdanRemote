@@ -1,8 +1,8 @@
 //% color=#007ACC icon="\uf11b" block="שלט"
 namespace RemoteControl {
     let pinsMap = [
-        DigitalPin.P5, DigitalPin.P11, DigitalPin.P12,
-        DigitalPin.P14, DigitalPin.P13, DigitalPin.P14
+        DigitalPin.P5, DigitalPin.P11, DigitalPin.P15,
+        DigitalPin.P14, DigitalPin.P13, DigitalPin.P12
     ]
     let wasPressed = [0, 0, 0, 0, 0, 0]
 
@@ -79,19 +79,19 @@ namespace RemoteControl {
 
                 switch (dir) {
                     case JoystickDirection.Up:
-                        active = y < 300;
+                        active = y < 200;
                         break;
                     case JoystickDirection.Down:
-                        active = y > 700;
+                        active = y > 800;
                         break;
                     case JoystickDirection.Left:
-                        active = x < 300;
+                        active = x < 200;
                         break;
                     case JoystickDirection.Right:
-                        active = x > 700;
+                        active = x > 800;
                         break;
                     case JoystickDirection.Center:
-                        active = x >= 300 && x <= 700 && y >= 300 && y <= 700;
+                        active = x >= 200 && x <= 800 && y >= 200 && y <= 800;
                         break;
                 }
 
