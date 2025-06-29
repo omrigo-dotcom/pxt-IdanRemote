@@ -97,10 +97,10 @@ namespace RemoteControl {
 
                 if (active) {
                     handler();
-                    basic.pause(100);
+                    basic.pause(20);
                 }
 
-                basic.pause(50);
+                basic.pause(20);
             }
         });
     }
